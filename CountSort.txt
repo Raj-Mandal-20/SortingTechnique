@@ -1,0 +1,44 @@
+// count sort
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int a[] = {6,3,9,10,15,6,8,12,3,6};
+    int l=sizeof(a)/sizeof(int);
+    int *count;
+    int max=a[0];
+    for(int i=0; i<l; i++){
+        if(max<a[i]) max=a[i];
+    }
+    puts("");
+    for(int i=0; i<l; i++){
+        printf("%d ", a[i]);
+    }
+    puts("");
+    count = (int*)malloc(sizeof(int)* (max+1));
+    for(int i=0; i<max+1; i++){
+        count[i]=0;
+    }
+    for(int i=0; i<l; i++){
+        count[a[i]]++;
+    }
+    for(int i=0; i<max+1; i++){
+        printf("%d ", count[i]);
+    }
+    int j=0, k=0;
+    while(j<=max+1){
+        if(count[j] == 0) j++;
+        else{
+            a[k++] = j;
+            count[j]--;
+        }
+    }
+    puts("");
+    for(int i=0; i<l; i++){
+        printf("%d ", a[i]);
+    }
+    
+    
+    return 0;
+}
